@@ -17,8 +17,8 @@ def format_username(username: str) -> str:
     return username[1:] if username.startswith("@") else username
 
 # CREATE QR CODE WITH DATA
-def createQRcode(data):
+def createQRcode(user: dict):
+    data = "".join([f"{k} = {v}\n" for k , v in user.items()])
     bytesIO = io.BytesIO()
     qrcode.make(data).save(bytesIO, format="PNG")
     return bytesIO.getvalue()
-
