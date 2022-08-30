@@ -1,18 +1,23 @@
-
-1. Save to Mongo DB
-    - Name              string
-    - Venmo ID          string
-    - Email             string
-    - Num Tickets       number
-    - Paid              boolean
-2. Request payment with link {root_address}/verify_payment/{venmoID}
-3. If link is clicked
-    - Check if Paid
-        - If Paid
-            - Display success page
-            - Update DB list            (QUERY w/ venmoID)
-            - Generate QR code          ()
-            - Send email with QR code as attachment
-            - Update Google Sheets
-        - If Not paid
-            - Display error page
+1. REACTJS FRONTEND
+    - COLLECT INFORMATION {NAME, EMAIL, VENMO_ID, NUM_TICKETS}
+    - DISPLAY ERROR / NEXT INSTRUCTIONS
+2. SERVERLESS - PYTHON
+    - MONGO DB 
+        - TRANSACTIONS {VENMO_ID, NUM_TICKETS, TRANSACTION_ID, PAID, DATE}
+        - USERS {NAME, EMAIL, VENMO_ID, TICKETS_BOUGHT}
+    - VENMO API
+        - REQUEST PAYMENT
+        - GET SETTLED TRANSACTIONS
+    - UTILS
+        - USERNAME PARSER
+        - COMPUTE PRICE
+        - CREATE QR CODE
+    - EMAIL
+        - APP PASSWORD SET UP
+        - PROTOCOLS: SMTP, MIME
+        - SECURE CONNECTION (SSL CONTEXT)
+3. CREATE CRON JOB
+    - GITHUB ACTIONS - WORKFLOWS
+4. DEPLOY
+    - CONNECT WITH GITHUB
+    - VERCEL
