@@ -42,4 +42,4 @@ class handler(BaseHTTPRequestHandler):
                     user = usersService.findUserByVenmoId(venmo_id=venmo_id)
 
                     # SEND CONFIRMATION EMAIL TO NEW CUSTOMER
-                    EmailService(user=user).sendEmail()
+                    EmailService(user=user, num_tickets=num_tickets).sendEmail()

@@ -4,7 +4,7 @@ import os
 
 import api.services.utils as utils
 from api.services.mongodb import TransactionsService
-from venmo_api import *
+from api.lib.venmo_api import *
 
 
 class VenmoService():

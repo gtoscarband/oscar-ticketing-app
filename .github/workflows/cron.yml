@@ -1,7 +1,7 @@
 name: 5-minute-cron
 on:
   schedule:
-    - cron: '5 * * * *'
+    - cron: '0 1 * * *'
 jobs:
   cron:
     runs-on: ubuntu-latest
@@ -9,4 +9,4 @@ jobs:
       - name: Call our API route
         run: |
           curl --request GET \
-          --url 'https://oscar-react-app.vercel.app/api/verify_payment'
+          --url 'https://oscar-react-app.vercel.app/api/endpoints/verify_payment'

@@ -3,6 +3,8 @@ from pymongo import MongoClient
 import os
 
 # SET UP DB AND CLIENT FOR MONGO SERVICE
+
+
 class MongoDBService():
 
     def __init__(self):
@@ -14,6 +16,8 @@ class MongoDBService():
         self._TRANSACTIONS = self._DB["TRANSACTIONS"]
 
 # MANAGES USERS COLLECTION
+
+
 class UsersService(MongoDBService):
 
     def __init__(self):
@@ -30,9 +34,11 @@ class UsersService(MongoDBService):
             "venmo_id": venmo_id,
             "tickets_bought": 0
         }
-        self._USERS.insert_one(document)
+        self._USERS.update_one(self._getKey(venmo_id), {
+            "$set": document
+        }, upsert=True)
 
-    # ADD TO USER'S TOTAL TICKETS BOUGHT 
+    # ADD TO USER'S TOTAL TICKETS BOUGHT
     def addTicketsBought(self, venmo_id: str, num_tickets: int):
         self._USERS.find_one_and_update(self._getKey(venmo_id), {
             "$inc": {"num_tickets", num_tickets}
@@ -43,6 +49,8 @@ class UsersService(MongoDBService):
         return self._USERS.find_one(self._getKey(venmo_id))
 
 # MANAGES TRANSACTIONS COLLECTION
+
+
 class TransactionsService(MongoDBService):
 
     def __init__(self):
