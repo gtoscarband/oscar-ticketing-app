@@ -1,4 +1,4 @@
-from api.lib.venmo_api import User, Page, Transaction, deserialize, wrap_callback, get_user_id
+from lib.venmo_api import User, Page, Transaction, deserialize, wrap_callback, get_user_id
 from typing import List, Union
 
 

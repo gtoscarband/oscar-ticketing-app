@@ -1,4 +1,4 @@
-from api.lib.venmo_api import string_to_timestamp, BaseModel, User, Mention, JSONSchema
+from lib.venmo_api import string_to_timestamp, BaseModel, User, Mention, JSONSchema
 
 
 class Comment(BaseModel):

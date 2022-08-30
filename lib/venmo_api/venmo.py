@@ -1,6 +1,3 @@
-import api.lib.venmo_api
-
-
 class Client(object):
 
     def __init__(self, access_token: str):

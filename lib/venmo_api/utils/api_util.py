@@ -1,4 +1,4 @@
-from api.lib.venmo_api import ArgumentMissingError, User, Page
+from lib.venmo_api import ArgumentMissingError, User, Page
 from enum import Enum
 from typing import Dict, List
 import re

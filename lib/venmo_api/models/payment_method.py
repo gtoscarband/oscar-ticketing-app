@@ -1,4 +1,4 @@
-from api.lib.venmo_api import JSONSchema, BaseModel
+from lib.venmo_api import JSONSchema, BaseModel
 from typing import Dict
 from enum import Enum
 import logging

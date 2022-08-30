@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler
 import json
 from api.services.venmo import VenmoService
 import ast
-from api.lib.venmo_api.models.exception import ResourceNotFoundError, HttpCodeError
+from lib.venmo_api.models.exception import ResourceNotFoundError, HttpCodeError
 from api.services.mongodb import UsersService
 
 class handler(BaseHTTPRequestHandler):

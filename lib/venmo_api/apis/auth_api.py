@@ -1,4 +1,4 @@
-from api.lib.venmo_api import random_device_id, warn, confirm, AuthenticationFailedError, ApiClient
+from lib.venmo_api import random_device_id, warn, confirm, AuthenticationFailedError, ApiClient
 
 
 class AuthenticationApi(object):

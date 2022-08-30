@@ -1,4 +1,4 @@
-from api.lib.venmo_api import string_to_timestamp, User, BaseModel, JSONSchema
+from lib.venmo_api import string_to_timestamp, User, BaseModel, JSONSchema
 from enum import Enum
 
 

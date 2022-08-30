@@ -1,4 +1,4 @@
-from api.lib.venmo_api import ResourceNotFoundError, InvalidHttpMethodError, HttpCodeError, validate_access_token
+from lib.venmo_api import ResourceNotFoundError, InvalidHttpMethodError, HttpCodeError, validate_access_token
 from json import JSONDecodeError
 from typing import List
 import requests

@@ -1,4 +1,4 @@
-from api.lib.venmo_api import BaseModel, User, JSONSchema
+from lib.venmo_api import BaseModel, User, JSONSchema
 
 
 class Mention(BaseModel):
