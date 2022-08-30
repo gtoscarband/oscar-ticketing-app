@@ -1,0 +1,45 @@
+
+
+from http.server import BaseHTTPRequestHandler
+from api.services.email import EmailService
+
+from api.services.mongodb import TransactionsService, UsersService
+from api.services.venmo import VenmoService
+
+
+class handler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        self._verify_payment()
+
+    def _verify_payment(self):
+
+        transactionsService = TransactionsService()
+        venmoService = VenmoService()
+        usersService = UsersService()
+
+        unpaid_transactions = transactionsService.getUnpaidTransactions()
+
+        # CHECK VENMO TRANSACTIONS IFF THERE ARE PENDING TICKET PURCHASES
+        if len(unpaid_transactions) > 0:
+            # GET SETTLED VENMO TRANSACTIONS
+            settled_transaction_ids = venmoService.getSettledTransactionIds()
+            for u_t in unpaid_transactions:
+                # IF A TRANSACTION HAS BEEN NEWLY SETTLED
+                if (transaction_id := u_t["transaction_id"]) in settled_transaction_ids:
+
+                    venmo_id = u_t["venmo_id"]
+                    num_tickets = u_t["num_tickets"]
+
+                    # UPDATE PAID STATUS IN TRANSACTIONS COLLECTION
+                    transactionsService.fulfillTransaction(
+                        transaction_id=transaction_id)
+
+                    # UPDATE NUM TICKETS BOUGHT IN USERS COLLECTION
+                    usersService.addTicketsBought(
+                        venmo_id=venmo_id, num_tickets=num_tickets)
+
+                    user = usersService.findUserByVenmoId(venmo_id=venmo_id)
+
+                    # SEND CONFIRMATION EMAIL TO NEW CUSTOMER
+                    EmailService(user=user).sendEmail()
