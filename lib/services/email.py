@@ -2,12 +2,12 @@
 
 import os
 import smtplib
-from email.mime.image import MIMEImage
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from lib.services.email import MIMEImage
+from lib.services.email import MIMEMultipart
+from lib.services.email import MIMEText
 
-from api.services.config.config import getConcertInfo
-from api.services.utils import createQRcode
+from lib.services.config.config import getConcertInfo
+from lib.services.utils import createQRcode
 
 
 class EmailService():

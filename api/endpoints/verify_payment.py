@@ -1,10 +1,10 @@
 
 
 from http.server import BaseHTTPRequestHandler
-from api.services.email import EmailService
+from lib.services.email import EmailService
 
-from api.services.mongodb import TransactionsService, UsersService
-from api.services.venmo import VenmoService
+from lib.services.mongodb import TransactionsService, UsersService
+from lib.services.venmo import VenmoService
 
 
 class handler(BaseHTTPRequestHandler):

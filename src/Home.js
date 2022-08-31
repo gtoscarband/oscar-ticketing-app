@@ -32,8 +32,6 @@ export default function Home() {
         const response = await fetch(endpoint, options);
         let statusCode = response.status;
 
-        statusCode = 200
-
         if (statusCode === 200) {
             setMessage({
                 color: "text-green-500",

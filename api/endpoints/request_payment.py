@@ -1,9 +1,9 @@
 from http.server import BaseHTTPRequestHandler
 import json
-from api.services.venmo import VenmoService
+from lib.services.venmo import VenmoService
 import ast
 from lib.venmo_api.models.exception import ResourceNotFoundError, HttpCodeError
-from api.services.mongodb import UsersService
+from lib.services.mongodb import UsersService
 
 class handler(BaseHTTPRequestHandler):
 
@@ -38,6 +38,7 @@ class handler(BaseHTTPRequestHandler):
             error_msg = error_info['error']['message']
             self.handleError(error_msg)
         except Exception as e:
+            print(e)
             self.handleError(str(e))
 
     def handleError(self, message: str):

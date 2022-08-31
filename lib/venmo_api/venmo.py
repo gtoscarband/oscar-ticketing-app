@@ -1,3 +1,6 @@
+from lib.venmo_api import ApiClient, UserApi, PaymentApi, AuthenticationApi, validate_access_token
+
+
 class Client(object):
 
     def __init__(self, access_token: str):
@@ -6,12 +9,12 @@ class Client(object):
         :param access_token: <str> Need access_token to work with the API.
         """
         super().__init__()
-        self.__access_token = api.lib.venmo_api.validate_access_token(access_token=access_token)
-        self.__api_client = api.lib.venmo_api.ApiClient(access_token=access_token)
-        self.user = api.lib.venmo_api.UserApi(self.__api_client)
+        self.__access_token = validate_access_token(access_token=access_token)
+        self.__api_client = ApiClient(access_token=access_token)
+        self.user = UserApi(self.__api_client)
         self.__profile = self.user.get_my_profile()
-        self.payment = api.lib.venmo_api.PaymentApi(profile=self.__profile,
-                                                    api_client=self.__api_client)
+        self.payment = PaymentApi(profile=self.__profile,
+                                  api_client=self.__api_client)
 
     def my_profile(self, force_update=False):
         """
@@ -33,7 +36,7 @@ class Client(object):
 
         :return: <str> access_token
         """
-        authn_api = api.lib.venmo_api.AuthenticationApi(api_client=api.lib.venmo_api.ApiClient(), device_id=device_id)
+        authn_api = AuthenticationApi(api_client=ApiClient(), device_id=device_id)
         return authn_api.login_with_credentials_cli(username=username, password=password)
 
     @staticmethod
@@ -43,5 +46,5 @@ class Client(object):
         :param access_token:
         :return: <bool>
         """
-        access_token = api.lib.venmo_api.validate_access_token(access_token=access_token)
-        return api.lib.venmo_api.AuthenticationApi.log_out(access_token=access_token)
+        access_token = validate_access_token(access_token=access_token)
+        return AuthenticationApi.log_out(access_token=access_token)

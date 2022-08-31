@@ -250,7 +250,7 @@ class PaymentApi(object):
         if callback:
             return
         # if no exception raises, then it was successful
-        return result['body']['data']['payment']['id']
+        return True
 
     def get_default_payment_method(self) -> PaymentMethod:
         """

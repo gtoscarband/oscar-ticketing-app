@@ -2,11 +2,12 @@
 
 import os
 
-import api.services.utils as utils
-from api.services.mongodb import TransactionsService
+import lib.services.utils as utils
+from lib.services.mongodb import TransactionsService
+from lib.venmo_api import Client, PaymentStatus
 
 
-class VenmoService():
+class VenmoService:
 
     def __init__(self):
         super().__init__()

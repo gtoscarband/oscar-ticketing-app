@@ -41,9 +41,11 @@ class HttpCodeError(Exception):
         except JSONDecodeError:
             json = "Invalid Json"
 
-        self.msg = msg or f"{json}"
+        self.msg = msg or f"HTTP Status code is invalid. Could not make the request because -> "\
+            f"{status_code} {reason}.\nError: {json}"
 
         super(HttpCodeError, self).__init__(self.msg)
+
 
 # ======= Methods Exceptions =======
 
