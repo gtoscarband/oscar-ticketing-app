@@ -10,7 +10,19 @@ from lib.services.venmo import VenmoService
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        self._verify_payment()
+        try:
+            self._verify_payment()
+            self.send_response(200)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(b"VERIFIED PAYMENT")
+        except Exception as e:
+            print(e)
+            self.send_response(400)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(b"ERROR VERIFYING PAYMENT")
+
 
     def _verify_payment(self):
 
