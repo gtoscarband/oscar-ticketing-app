@@ -2,9 +2,9 @@
 
 import os
 import smtplib
-from lib.services.email import MIMEImage
-from lib.services.email import MIMEMultipart
-from lib.services.email import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 from lib.services.config.config import getConcertInfo
 from lib.services.utils import createQRcode
@@ -50,8 +50,9 @@ class EmailService():
         msg.attach(img)
 
         # SEND EMAIL VIA SMTP
+        server = smtplib.SMTP(smtp_server, port)
+
         try:
-            server = smtplib.SMTP(smtp_server, port)
             server.ehlo()
             server.starttls()
             server.ehlo()

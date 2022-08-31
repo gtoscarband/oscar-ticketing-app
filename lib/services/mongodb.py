@@ -41,7 +41,7 @@ class UsersService(MongoDBService):
     # ADD TO USER'S TOTAL TICKETS BOUGHT
     def addTicketsBought(self, venmo_id: str, num_tickets: int):
         self._USERS.find_one_and_update(self._getKey(venmo_id), {
-            "$inc": {"num_tickets", num_tickets}
+            "$inc": {"tickets_bought": num_tickets}
         })
 
     # FIND USER BY VENMO ID
@@ -57,7 +57,7 @@ class TransactionsService(MongoDBService):
         super().__init__()
 
     def _getKey(self, transaction_id: str):
-        return {"_id": transaction_id}
+        return {"transaction_id": transaction_id}
 
     # ADD A NEW TRANSACTION TO THE COLLECTION
     def addNewTransaction(self, transaction_id: str, venmo_id: str, num_tickets: int):
@@ -65,7 +65,7 @@ class TransactionsService(MongoDBService):
             "venmo_id": venmo_id,
             "num_tickets": num_tickets,
             "transaction_id": transaction_id,
-            "fulfilled": False,
+            "paid": False,
             "date": datetime.utcnow()
         }
         self._TRANSACTIONS.insert_one(document)
@@ -76,6 +76,7 @@ class TransactionsService(MongoDBService):
 
     # CHANGE PAID STATUS OF A TRANSACTION TO TRUE
     def fulfillTransaction(self, transaction_id: str):
-        self._TRANSACTIONS.find_one_and_update(self._getKey(transaction_id), {
+        fulfilledTransaction = self._TRANSACTIONS.find_one_and_update(self._getKey(transaction_id), {
             "$set": {"paid": True}
-        })
+        }, return_document=True)
+        print("FULFILLED TRANSACTION: ", fulfilledTransaction)

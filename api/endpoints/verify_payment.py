@@ -19,9 +19,9 @@ class handler(BaseHTTPRequestHandler):
         usersService = UsersService()
 
         unpaid_transactions = transactionsService.getUnpaidTransactions()
-
+        unpaid_count = unpaid_transactions.explain().get("executionStats", {}).get("nReturned")
         # CHECK VENMO TRANSACTIONS IFF THERE ARE PENDING TICKET PURCHASES
-        if len(unpaid_transactions) > 0:
+        if unpaid_count > 0:
             # GET SETTLED VENMO TRANSACTIONS
             settled_transaction_ids = venmoService.getSettledTransactionIds()
             for u_t in unpaid_transactions:

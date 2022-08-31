@@ -1,5 +1,3 @@
-
-
 import os
 
 import lib.services.utils as utils
@@ -20,11 +18,10 @@ class VenmoService:
 
     # REQUEST PAYMENT TO USER WITH USER_ID
     def requestPayment(self, num_tickets: int, name: str, target_venmo_id: str):
-
         TARGET = self._CLIENT.user.get_user(
             user_id=utils.format_username(target_venmo_id))
 
-        REQUEST_MESSAGE = f"GT OSCAR BAND - {os.environ.get('CONCERT_NAME')} \n{num_tickets} Tickets For: {name}"
+        REQUEST_MESSAGE = f"GT OSCAR BAND - {os.environ.get('CONCERT_NAME')} \n{num_tickets} Tickets For: {name}\n\nPlease wait upto 5 minutes to receive a payment confirmation through email."
 
         transaction_id = self._CLIENT.payment.request_money(
             target_user=TARGET,
