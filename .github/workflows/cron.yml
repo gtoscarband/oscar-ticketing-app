@@ -1,7 +1,7 @@
 name: 5-minute-cron
 on:
   schedule:
-    - cron: '*/6 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
