@@ -3,7 +3,7 @@ import {useState} from "react";
 export default function Home() {
 
     const [message, setMessage] = useState({
-        color: "text-white",
+        color: "text-blue",
         message: "Please fill out the information and click Buy Now"
     })
 
