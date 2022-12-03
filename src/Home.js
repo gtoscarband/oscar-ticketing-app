@@ -63,9 +63,7 @@ export default function Home() {
                     <div className="flex-col flex  self-center lg:p-14 sm:max-w-4xl xl:max-w-md  z-10">
                         <div className="self-start hidden lg:flex flex-col  text-gray-300">
                             <h1 className="my-3 font-semibold text-4xl">GT Oscar Band Concert</h1>
-                            <p className="pr-3 text-sm opacity-75">Concert Info: <br/> Lorem ipsum is placeholder text
-                                commonly used in the graphic, print,
-                                and publishing industries for previewing layouts and visual mockups</p>
+                            <p className="pr-3 text-sm opacity-75">Concert Info: <br/> December 7th, 2022 @ John Lewis Student Center, Atlantic Theatre (351 Ferst Dr NW, Atlanta, GA 30332). 1 ticket for $5 and 2 tickets for $6.</p>
                         </div>
                     </div>
                     {/* RIGHT */}
