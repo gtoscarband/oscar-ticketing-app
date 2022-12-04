@@ -4,7 +4,7 @@ export default function Home() {
 
     const [message, setMessage] = useState({
         color: "text-blue",
-        message: "Please fill out the information and click Buy Now"
+        message: "1 ticket is $5, 2 tickets are $3 each. The concert will be held at John Lewis Student Center Atlantic Theatre. December 7th from 6PM to 8PM."
     })
 
     const handleSubmit = async (event) => {
